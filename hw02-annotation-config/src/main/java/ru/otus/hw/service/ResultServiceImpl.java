@@ -25,4 +25,5 @@ public class ResultServiceImpl implements ResultService {
         }
         ioService.printLine("Sorry. You fail test.");
     }
+
 }

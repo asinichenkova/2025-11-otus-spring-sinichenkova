@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import ru.otus.hw.service.TestRunnerService;
 
 public class Application {
+
     public static void main(String[] args) {
 
         //Создать контекст на основе Annotation/Java конфигурирования
@@ -12,4 +13,5 @@ public class Application {
         testRunnerService.run();
 
     }
+
 }

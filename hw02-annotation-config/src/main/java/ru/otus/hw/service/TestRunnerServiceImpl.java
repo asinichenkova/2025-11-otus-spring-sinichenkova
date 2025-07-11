@@ -17,4 +17,5 @@ public class TestRunnerServiceImpl implements TestRunnerService {
         var testResult = testService.executeTestFor(student);
         resultService.showResult(testResult);
     }
+
 }

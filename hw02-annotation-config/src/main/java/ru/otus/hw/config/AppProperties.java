@@ -11,4 +11,5 @@ public class AppProperties implements TestConfig, TestFileNameProvider {
 
     // внедрить свойство из application.properties
     private String testFileName;
+
 }

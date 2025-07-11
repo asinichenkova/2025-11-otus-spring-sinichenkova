@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 public class TestResult {
+
     private final Student student;
 
     private final List<Question> answeredQuestions;
@@ -24,4 +25,5 @@ public class TestResult {
             rightAnswersCount++;
         }
     }
+
 }
