@@ -16,6 +16,7 @@
         <opencsv.version>5.9</opencsv.version>
         <junit.version>5.10.2</junit.version>
         <mockito.version>5.10.0</mockito.version>
+        <mockito-junit-jupiter.version>5.18.0</mockito-junit-jupiter.version>
         <assertj.version>3.25.2</assertj.version>
         <lombok.version>1.18.32</lombok.version>
         <checkstyle-plugin.version>3.6.0</checkstyle-plugin.version>
@@ -53,10 +54,24 @@
         </dependency>
 
         <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <scope>test</scope>
+            <version>${junit.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
             <version>${mockito.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <scope>test</scope>
+            <version>${mockito-junit-jupiter.version}</version>
         </dependency>
 
         <dependency>
