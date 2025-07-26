@@ -27,4 +27,5 @@ public class AppProperties implements TestConfig, TestFileNameProvider, LocaleCo
     public String getTestFileName() {
         return fileNameByLocaleTag.get(locale.toLanguageTag());
     }
+
 }

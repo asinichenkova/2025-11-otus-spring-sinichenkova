@@ -10,4 +10,5 @@ public class AnswerCsvConverter extends AbstractCsvConverter {
         var valueArr = value.split("%");
         return new Answer(valueArr[0], Boolean.parseBoolean(valueArr[1]));
     }
+
 }

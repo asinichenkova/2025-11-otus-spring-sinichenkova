@@ -11,6 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Component
 public class CsvQuestionDao implements QuestionDao {
+
     private final TestFileNameProvider fileNameProvider;
 
     @Override
@@ -22,4 +23,5 @@ public class CsvQuestionDao implements QuestionDao {
 
         return new ArrayList<>();
     }
+
 }

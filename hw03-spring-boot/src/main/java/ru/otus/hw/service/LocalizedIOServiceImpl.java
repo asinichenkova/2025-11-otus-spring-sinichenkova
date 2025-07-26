@@ -66,11 +66,12 @@ public class LocalizedIOServiceImpl implements LocalizedIOService {
         return ioService.readIntForRangeWithPrompt(min, max,
                 localizedMessagesService.getMessage(promptCode),
                 localizedMessagesService.getMessage(errorMessageCode)
-                );
+        );
     }
 
     @Override
     public String getMessage(String code, Object... args) {
         return localizedMessagesService.getMessage(code, args);
     }
+
 }

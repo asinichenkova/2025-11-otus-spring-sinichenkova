@@ -1,7 +1,6 @@
 package ru.otus.hw.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import ru.otus.hw.config.LocaleConfig;
 
@@ -16,4 +15,5 @@ public class LocalizedMessagesServiceImpl implements LocalizedMessagesService {
     public String getMessage(String code, Object... args) {
         return null;
     }
+
 }

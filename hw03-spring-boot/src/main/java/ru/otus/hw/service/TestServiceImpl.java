@@ -23,7 +23,7 @@ public class TestServiceImpl implements TestService {
         var questions = questionDao.findAll();
         var testResult = new TestResult(student);
 
-        for (var question: questions) {
+        for (var question : questions) {
             var isAnswerValid = false; // Задать вопрос, получить ответ
             testResult.applyAnswer(question, isAnswerValid);
         }
