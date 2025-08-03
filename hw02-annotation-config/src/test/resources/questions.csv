@@ -1,0 +1,3 @@
+# Добавить сюда своих вопросов. Эту строку надо пропустить при настройке CsvToBean (withSkipLines)
+What kind of room has no doors or windows?;A bedroom%false|A mushroom%true|A classroom%false
+What has a head like a cat, feet like a cat, a tail like a cat, but isn’t a cat?;A kitten%true|A ghost%false|A Bigfoot%false
