@@ -17,10 +17,11 @@ public class StreamsIOService implements IOService {
     private final Scanner scanner;
 
     public StreamsIOService(@Value("#{T(System).out}") PrintStream printStream,
-                            @Value("#{T(System).in}") InputStream inputStream) {
-
+                            @Value("#{T(System).in}") InputStream inputStream
+    ) {
         this.printStream = printStream;
         this.scanner = new Scanner(inputStream);
+
     }
 
     @Override
