@@ -4,11 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import ru.otus.hw.config.AppProperties;
 import ru.otus.hw.dao.QuestionDao;
 import ru.otus.hw.domain.Answer;
 import ru.otus.hw.domain.Question;
@@ -18,10 +15,11 @@ import ru.otus.hw.domain.TestResult;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = {TestServiceImpl.class})
-@EnableConfigurationProperties(value = AppProperties.class)
-@ActiveProfiles("test")
 class TestServiceImplTest {
 
     @MockitoBean
@@ -47,36 +45,36 @@ class TestServiceImplTest {
         var studentAnswer = 3;
         var expectedTestResult = getTestResult(student, questionList);
 
-        Mockito.doNothing().when(ioService).printLine(Mockito.anyString());
-        Mockito.doNothing().when(ioService).printLineLocalized(Mockito.anyString());
-        Mockito.doNothing().when(ioService).printFormattedLine(Mockito.anyString(), Mockito.anyString());
-        Mockito.when(questionDao.findAll()).thenReturn(questionList);
-        Mockito.when(ioService.getMessage(
+        doNothing().when(ioService).printLine(Mockito.anyString());
+        doNothing().when(ioService).printLineLocalized(Mockito.anyString());
+        doNothing().when(ioService).printFormattedLine(Mockito.anyString(), Mockito.anyString());
+        when(questionDao.findAll()).thenReturn(questionList);
+        when(ioService.getMessage(
                 Mockito.eq(inputPromptMessageCode),
                 Mockito.anyInt(),
                 Mockito.anyInt()
         )).thenReturn("some text");
-        Mockito.when(ioService.getMessage(incorrectAnswerFormatMessageCode)).thenReturn("some error text");
-        Mockito.when(ioService.readIntForRangeWithPrompt(
-                        Mockito.anyInt(),
-                        Mockito.anyInt(),
-                        Mockito.anyString(),
-                        Mockito.anyString()
-                ))
+        when(ioService.getMessage(incorrectAnswerFormatMessageCode)).thenReturn("some error text");
+        when(ioService.readIntForRangeWithPrompt(
+                Mockito.anyInt(),
+                Mockito.anyInt(),
+                Mockito.anyString(),
+                Mockito.anyString()
+        ))
                 .thenReturn(studentAnswer);
 
         var actualTestResult = testService.executeTestFor(student);
 
-        Mockito.verify(questionDao, Mockito.times(1)).findAll();
+        verify(questionDao, Mockito.times(1)).findAll();
         // вызов метода печати пустой строки
-        Mockito.verify(ioService, Mockito.times(2)).printLine(Mockito.anyString());
+        verify(ioService, Mockito.times(2)).printLine(Mockito.anyString());
         // вызов метода печати заголовка
-        Mockito.verify(ioService, Mockito.times(1)).printLineLocalized(headerMessageCode);
+        verify(ioService, Mockito.times(1)).printLineLocalized(headerMessageCode);
         // вызов метода печати вопросов
-        Mockito.verify(ioService, Mockito.times(questionList.size()))
+        verify(ioService, Mockito.times(questionList.size()))
                 .printFormattedLine(Mockito.anyString(), Mockito.anyString());
         // вызов метода печати ответов
-        Mockito.verify(ioService, Mockito.times(answerCount))
+        verify(ioService, Mockito.times(answerCount))
                 .printFormattedLine(Mockito.anyString(), Mockito.anyInt(), Mockito.anyString());
         // проверка результата
         assertThat(actualTestResult)
