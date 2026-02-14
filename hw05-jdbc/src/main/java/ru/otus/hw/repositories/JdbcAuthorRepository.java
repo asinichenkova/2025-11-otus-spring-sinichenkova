@@ -29,5 +29,7 @@ public class JdbcAuthorRepository implements AuthorRepository {
         public Author mapRow(ResultSet rs, int i) throws SQLException {
             return null;
         }
+
     }
+
 }

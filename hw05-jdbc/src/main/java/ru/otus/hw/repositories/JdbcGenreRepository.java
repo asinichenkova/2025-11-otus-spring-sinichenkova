@@ -29,5 +29,7 @@ public class JdbcGenreRepository implements GenreRepository {
         public Genre mapRow(ResultSet rs, int i) throws SQLException {
             return null;
         }
+
     }
+
 }

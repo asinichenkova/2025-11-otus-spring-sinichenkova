@@ -59,5 +59,7 @@ public class JdbcBookRepository implements BookRepository {
         public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
             return null;
         }
+
     }
+
 }

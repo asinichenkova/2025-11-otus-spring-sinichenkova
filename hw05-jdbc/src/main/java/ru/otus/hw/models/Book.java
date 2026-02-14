@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
+
     private long id;
 
     private String title;
@@ -15,4 +16,5 @@ public class Book {
     private Author author;
 
     private Genre genre;
+
 }

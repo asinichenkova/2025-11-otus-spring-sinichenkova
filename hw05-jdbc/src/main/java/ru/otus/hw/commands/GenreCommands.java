@@ -22,4 +22,5 @@ public class GenreCommands {
                 .map(genreConverter::genreToString)
                 .collect(Collectors.joining("," + System.lineSeparator()));
     }
+
 }

@@ -50,4 +50,5 @@ public class BookCommands {
     public void deleteBook(long id) {
         bookService.deleteById(id);
     }
+
 }

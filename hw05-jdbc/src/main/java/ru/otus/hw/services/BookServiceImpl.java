@@ -14,6 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class BookServiceImpl implements BookService {
+
     private final AuthorRepository authorRepository;
 
     private final GenreRepository genreRepository;
@@ -53,4 +54,5 @@ public class BookServiceImpl implements BookService {
         var book = new Book(id, title, author, genre);
         return bookRepository.save(book);
     }
+
 }
