@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-02-09--003-create-genres
+      author: alsinichenkova
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: genres
+      changes:
+        - tagDatabase:
+            tag: v1.0.0
+        - createTable:
+            tableName: genres
+            remarks: "Жанры"
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  remarks: "Идентификатор жанра"
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  remarks: "Наименование жанра"
+                  constraints:
+                    nullable: false
+      rollback:
