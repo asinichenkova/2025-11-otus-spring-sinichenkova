@@ -6,3 +6,6 @@ spring:
       mode: always
       data-locations: data.sql
       schema-locations: schema.sql
+  h2:
+    console:
+      enabled: true
