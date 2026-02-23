@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/v1.0.0/2026-02-09--001-create-authors.yaml
+  - include:
+      file: db/changelog/v1.0.0/2026-02-09--002-create-genres.yaml
+  - include:
+      file: db/changelog/v1.0.0/2026-02-09--003-create-books.yaml
+  - include:
+      file: db/changelog/v1.0.0/data/2026-02-16--001-fill-authors.yaml
+  - include:
+      file: db/changelog/v1.0.0/data/2026-02-16--002-fill-genres.yaml
+  - include:
+      file: db/changelog/v1.0.0/data/2026-02-16--003-fill-books.yaml

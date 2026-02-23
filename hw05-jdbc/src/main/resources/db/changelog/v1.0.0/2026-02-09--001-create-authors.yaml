@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-02-09--001-create-authors
+      author: alsinichenkova
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: authors
+      changes:
+        - tagDatabase:
+            tag: v1.0.0
+        - createTable:
+            tableName: authors
+            remarks: "Авторы"
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  remarks: "Идентификатор автора"
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: full_name
+                  type: VARCHAR(255)
+                  remarks: "Имя автора"
+                  constraints:
+                    nullable: false
+      rollback:
