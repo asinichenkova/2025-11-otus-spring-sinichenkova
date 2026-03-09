@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-02-24--001-fill-comments
+      author: alsinichenkova
+      contextFilter: prod
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: comments
+      changes:
+        - tagDatabase:
+            tag: v2.0.0
+        - insert:
+            tableName: comments
+            columns:
+              - column:
+                  name: message
+                  value: "BookCommentMessage_1"
+              - column:
+                  name: book_id
+                  value: "1"
+        - insert:
+            tableName: comments
+            columns:
+              - column:
+                  name: message
+                  value: "BookCommentMessage_2"
+              - column:
+                  name: book_id
+                  value: "1"
+        - insert:
+            tableName: comments
+            columns:
+              - column:
+                  name: message
+                  value: "BookCommentMessage_4"
+              - column:
+                  name: book_id
+                  value: "1"
+        - insert:
+            tableName: comments
+            columns:
+              - column:
+                  name: message
+                  value: "BookCommentMessage_3"
+              - column:
+                  name: book_id
+                  value: "3"
