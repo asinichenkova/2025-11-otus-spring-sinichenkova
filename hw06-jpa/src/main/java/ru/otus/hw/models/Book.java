@@ -12,15 +12,19 @@ import jakarta.persistence.NamedAttributeNode;
 import jakarta.persistence.NamedEntityGraph;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import static ru.otus.hw.constants.AppConstants.BOOK_ENTITY_GRAPH_NAME;
 
-@Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Getter
+@Setter
+@ToString
 @Table(name = "books")
 @NamedEntityGraph(
         name = BOOK_ENTITY_GRAPH_NAME,
@@ -37,10 +41,12 @@ public class Book {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
+    @ToString.Exclude
     private Author author;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "genre_id")
+    @ToString.Exclude
     private Genre genre;
 
 }

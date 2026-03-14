@@ -12,17 +12,22 @@ import jakarta.persistence.NamedAttributeNode;
 import jakarta.persistence.NamedEntityGraph;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.OffsetDateTime;
 
 import static ru.otus.hw.constants.AppConstants.COMMENT_ENTITY_GRAPH_NAME;
 
-@Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Getter
+@Setter
+@ToString
 @Table(name = "comments")
 @NamedEntityGraph(
         name = COMMENT_ENTITY_GRAPH_NAME,
@@ -39,6 +44,7 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
+    @ToString.Exclude
     private Book book;
 
     @Column(name = "created_at")

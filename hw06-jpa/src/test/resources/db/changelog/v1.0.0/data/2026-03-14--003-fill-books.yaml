@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-03-14--003-fill-books
+      author: alsinichenkova
+      contextFilter: test
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: books
+      changes:
+        - tagDatabase:
+            tag: v1.0.0
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: title
+                  value: "BookTitle_1"
+              - column:
+                  name: author_id
+                  value: "1"
+              - column:
+                  name: genre_id
+                  value: "1"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: title
+                  value: "BookTitle_2"
+              - column:
+                  name: author_id
+                  value: "2"
+              - column:
+                  name: genre_id
+                  value: "2"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: title
+                  value: "BookTitle_3"
+              - column:
+                  name: author_id
+                  value: "3"
+              - column:
+                  name: genre_id
+                  value: "3"

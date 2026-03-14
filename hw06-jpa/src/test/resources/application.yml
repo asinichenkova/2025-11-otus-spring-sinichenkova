@@ -4,8 +4,17 @@ spring:
   sql:
     init:
       mode: always
+  liquibase:
+    enabled: true
+    contexts: test
   jpa:
     generate-ddl: false
     hibernate:
       ddl-auto: none
     show-sql: true
+  shell:
+    interactive:
+      enabled: false
+  test:
+    database:
+      replace: none
