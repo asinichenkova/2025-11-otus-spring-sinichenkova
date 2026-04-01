@@ -1,5 +1,6 @@
 package ru.otus.hw.repositories;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import ru.otus.hw.models.Book;
 import ru.otus.hw.models.Genre;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Репозиторий на основе Jpa для работы с книгами")
 @DataJpaTest
@@ -20,6 +22,8 @@ class JpaBookRepositoryTest {
     private static final int EXPECTED_NUMBER_OF_BOOKS = 3;
 
     private static final long FIRST_BOOK_ID = 1L;
+
+    private static final long HUNDREDTH_BOOK_ID = 100L;
 
     @Autowired
     private JpaBookRepository repositoryJpa;
@@ -33,6 +37,13 @@ class JpaBookRepositoryTest {
         var expectedBook = testEntityManager.find(Book.class, FIRST_BOOK_ID);
         var actualBook = repositoryJpa.findById(FIRST_BOOK_ID);
         assertThat(actualBook).isPresent().get().usingRecursiveComparison().isEqualTo(expectedBook);
+    }
+
+    @DisplayName("должен возвращать Optional.empty, если не удалось найти книгу по идентификатору")
+    @Test
+    void shouldReturnOptionalEmpty_whenBookByIdNotFound() {
+        var actualBook = repositoryJpa.findById(HUNDREDTH_BOOK_ID);
+        assertThat(actualBook).isNotPresent();
     }
 
     @DisplayName("должен загружать список всех книг")
@@ -61,6 +72,12 @@ class JpaBookRepositoryTest {
     void shouldDeleteBook() {
         repositoryJpa.deleteById(FIRST_BOOK_ID);
         assertThat(testEntityManager.find(Book.class, FIRST_BOOK_ID)).isNull();
+    }
+
+    @DisplayName("должен вызывать EntityNotFoundException, если книга с таким идентификатором не существует")
+    @Test
+    void shouldThrowEntityNotFoundException() {
+        assertThrows(EntityNotFoundException.class, () -> repositoryJpa.deleteById(HUNDREDTH_BOOK_ID));
     }
 
 }
