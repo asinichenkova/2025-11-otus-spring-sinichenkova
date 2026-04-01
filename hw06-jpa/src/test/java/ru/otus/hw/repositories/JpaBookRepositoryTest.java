@@ -59,9 +59,8 @@ class JpaBookRepositoryTest {
     @DisplayName("должен удялать книгу")
     @Test
     void shouldDeleteBook() {
-        var book = testEntityManager.find(Book.class, FIRST_BOOK_ID);
-        repositoryJpa.delete(book);
-        assertThat(testEntityManager.find(Book.class, book.getId())).isNull();
+        repositoryJpa.deleteById(FIRST_BOOK_ID);
+        assertThat(testEntityManager.find(Book.class, FIRST_BOOK_ID)).isNull();
     }
 
 }

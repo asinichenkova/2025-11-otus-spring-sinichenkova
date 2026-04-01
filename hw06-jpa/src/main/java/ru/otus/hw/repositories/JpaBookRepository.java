@@ -4,7 +4,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
-import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.otus.hw.models.Book;
@@ -55,9 +54,9 @@ public class JpaBookRepository implements BookRepository {
     }
 
     @Override
-    @Transactional
-    public void delete(Book book) {
-        entityManager.remove(entityManager.contains(book) ? book : entityManager.merge(book));
+    public void deleteById(long id) {
+        var book = entityManager.getReference(Book.class, id);
+        entityManager.remove(book);
     }
 
 }

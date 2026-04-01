@@ -59,9 +59,8 @@ class JpaCommentRepositoryTest {
     @DisplayName("должен удялать комментарий")
     @Test
     void shouldDeleteComment() {
-        var comment = testEntityManager.find(Comment.class, FIRST_COMMENT_ID);
-        repositoryJpa.delete(comment);
-        assertThat(testEntityManager.find(Comment.class, comment.getId())).isNull();
+        repositoryJpa.deleteById(FIRST_COMMENT_ID);
+        assertThat(testEntityManager.find(Comment.class, FIRST_COMMENT_ID)).isNull();
     }
 
 }

@@ -13,6 +13,6 @@ public interface BookRepository {
 
     Book save(Book book);
 
-    void delete(Book book);
+    void deleteById(long id);
 
 }

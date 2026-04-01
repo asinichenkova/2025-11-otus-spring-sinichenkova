@@ -59,9 +59,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @Transactional
     public void deleteById(long id) {
-        var comment = commentRepository.findById(id)
-                .orElseThrow(entityNotFoundExceptionSupplier(COMMENT_NOT_FOUND_MESSAGE.formatted(id)));
-        commentRepository.delete(comment);
+        commentRepository.deleteById(id);
     }
 
     private Supplier<EntityNotFoundException> entityNotFoundExceptionSupplier(String message) {
