@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-03-14--002-fill-genres
+      author: alsinichenkova
+      contextFilter: test
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: genres
+      changes:
+        - tagDatabase:
+            tag: v1.0.0
+        - insert:
+            tableName: genres
+            columns:
+              - column:
+                  name: name
+                  value: "Genre_1"
+        - insert:
+            tableName: genres
+            columns:
+              - column:
+                  name: name
+                  value: "Genre_2"
+        - insert:
+            tableName: genres
+            columns:
+              - column:
+                  name: name
+                  value: "Genre_3"

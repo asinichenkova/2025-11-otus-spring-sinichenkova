@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-03-14--001-fill-authors
+      author: alsinichenkova
+      contextFilter: test
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExists:
+            tableName: authors
+      changes:
+        - tagDatabase:
+            tag: v1.0.0
+        - insert:
+            tableName: authors
+            columns:
+              - column:
+                  name: full_name
+                  value: "TestAuthor_1"
+        - insert:
+            tableName: authors
+            columns:
+              - column:
+                  name: full_name
+                  value: "TestAuthor_2"
+        - insert:
+            tableName: authors
+            columns:
+              - column:
+                  name: full_name
+                  value: "TestAuthor_3"

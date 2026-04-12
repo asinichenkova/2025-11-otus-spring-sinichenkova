@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-02-24--001-create-comments
+      author: alsinichenkova
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: comments
+      changes:
+        - tagDatabase:
+            tag: v1.0.0
+        - createTable:
+            tableName: comments
+            remarks: "Комментарии"
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  remarks: "Идентификатор комментария"
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: message
+                  type: VARCHAR(255)
+                  remarks: "Текст комментария"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: book_id
+                  type: BIGINT
+                  remarks: "Идентификатор книги, к которой относится комментарий"
+                  constraints:
+                    nullable: false
+                    foreignKeyName: comments_books_fk
+                    references: books(id)
+                    onDelete: cascade
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  remarks: "Дата и время создания комментария"
+                  defaultValueDate: "now()"
+                  constraints:
+                    nullable: false
+      rollback:
